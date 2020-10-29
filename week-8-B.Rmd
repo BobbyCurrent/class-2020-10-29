@@ -32,22 +32,44 @@ Today, we will be considering `att_chg` as a function of `treatment`.
 
 * Create the mathematical formula for that model here.
 
+$$att_{chg} = \beta_{int} + \beta_1 x_{treatment} + \epsilon_i$$
+
 * Describe the ideal Preceptor Table.
+The ideal preceptor table would have no unkowns and would have the values for people both with and without the treatment, so that the changge in attitude could be accurately seen.
 
 * Write a few sentences about whether or not our data will allow us to answer this question.
+It can be helpful in some ways I guess. It will allow us to see the affect the treatment had on attitude in the study.
 
+```{r sc1}
+fit_obj <- stan_glm(att_chg ~ treatment - 1,
+         data = week_8,
+         refresh = 0)
+```
 
 
 ## Scene 2
 
 **Prompt:** There are two ways to interpret our question. The first involves our expectation. We can also think of this as the long-term average, if we did the same experiment over and over again. (Assume that Preceptor is always assigned to the treatment.) What is your posterior probability distribution for Preceptor's *expected* `att_chg`?
 
+```{r sc2}
+fit_obj %>%
+  as_tibble() %>%
+  mutate(ate = treatmentTreated - treatmentControl) %>%
+  ggplot(aes(x = ate)) +
+  geom_histogram(aes(y = after_stat(count / sum(count))),
+                 bins = 200) 
+  
+  
+```
 
 
 ## Scene 3
 
 **Prompt:** The second way to interpret the question is with regard to a single individual. What will happen to Preceptor next week? Provide a Posterior Predictive Distribution for what you predict will be Preceptor's `att_chg` after treatment.
 
+```{r sc3}
+
+```
 
 
 ## Challenge Problem

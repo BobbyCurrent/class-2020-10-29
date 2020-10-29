@@ -1,0 +1,14 @@
+---
+title: "Untitled"
+author: "Bobby Current"
+date: "10/29/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+$x = y$
+ The exponet rules kinda. $x^6$ This is x to the 6th power or whatever.
+ 
